@@ -1,0 +1,438 @@
+{
+	"info": {
+		"_postman_id": "ef0cdf7c-15d8-41f5-834f-531f29c2dd35",
+		"name": "MyApp-Tableau-Dev",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Signin- Get Token",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<tsRequest>\r\n  <credentials name=\"svc.ers\" password=\"XXXXXXXXXX\" >\r\n    <site contentUrl=\"\" />\r\n  </credentials>\r\n</tsRequest>",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/auth/signin",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"auth",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get-Users",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "X-Tableau-Auth",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/sites/{{site_id}}/users/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"sites",
+						"{{site_id}}",
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get-Groups",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "X-Tableau-Auth",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/sites/{{site_id}}/groups/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"sites",
+						"{{site_id}}",
+						"groups",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add-Group-To-Site",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "X-Tableau-Auth",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<tsRequest>\n  <group name=\"{{new_group_name}}\" />\n</tsRequest>",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/sites/{{site_id}}/groups",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"sites",
+						"{{site_id}}",
+						"groups"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add-User-To-Site",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "X-Tableau-Auth",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<tsRequest>\n  <user name=\"{{new_user_email}}\"\n        siteRole=\"Viewer\"\n         />\n</tsRequest>",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/sites/{{site_id}}/users/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"sites",
+						"{{site_id}}",
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add-User-To-Group",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "X-Tableau-Auth",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<tsRequest>\n  <user id=\"{{user_id}}\" />\n</tsRequest>",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/sites/{{site_id}}/groups/{{group_id}}/users",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"sites",
+						"{{site_id}}",
+						"groups",
+						"{{group_id}}",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove-User-From-Group",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "X-Tableau-Auth",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/sites/{{site_id}}/groups/{{group_id}}/users/{{user_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"sites",
+						"{{site_id}}",
+						"groups",
+						"{{group_id}}",
+						"users",
+						"{{user_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove-User-From-Site",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "X-Tableau-Auth",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/sites/{{site_id}}/users/{{user_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"sites",
+						"{{site_id}}",
+						"users",
+						"{{user_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove-Group-From-Site",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "X-Tableau-Auth",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/sites/{{site_id}}/groups/{{group_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"sites",
+						"{{site_id}}",
+						"groups",
+						"{{group_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Singout",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "X-Tableau-Auth",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/auth/signout",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"auth",
+						"signout"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "key",
+				"value": "X-Tableau-Auth",
+				"type": "string"
+			},
+			{
+				"key": "value",
+				"value": "{{api_key}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "ab4f9344-ce44-4502-b6f9-7c4b2fe1dac0",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "d219cd0b-c7b6-4d40-835b-7d2008430c77",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "6785dd1c-0c55-4482-86f5-bb6752b9ca7c",
+			"key": "api_key",
+			"value": "123456",
+			"type": "string"
+		},
+		{
+			"id": "211d2dd0-cc67-4915-b5f3-a9e56877a942",
+			"key": "site_id",
+			"value": "09d9da1b-6a49-4808-b5f4-89f036b70742",
+			"type": "string"
+		},
+		{
+			"id": "6dd4ab3a-8103-4aeb-81af-abbf15e7e76b",
+			"key": "base_url\n",
+			"value": "https://disdevtableau.myapp.com/api/3.6",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

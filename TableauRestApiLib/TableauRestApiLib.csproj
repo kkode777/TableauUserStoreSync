@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="RestApiService.cs~RF206fe4d0.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Models\ts-api_3_6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+
+</Project>
